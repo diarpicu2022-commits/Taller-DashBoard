@@ -39,8 +39,11 @@ tailwind.config = {
         'kpi':   ['32px', { lineHeight: '40px', fontWeight: '700' }],
       },
       borderRadius: {
-        'icon': '12px',
-        'card': '16px',
+        // Enmienda 2026-09-09: la referencia usa circulo para el contenedor de
+        // icono y un radio de tarjeta mayor al fijado inicialmente. Verificado
+        // sobre un recorte ampliado 2x de image.png.
+        'icon': '9999px',
+        'card': '20px',
         'shell': '24px',
       },
       boxShadow: {
