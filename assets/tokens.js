@@ -17,6 +17,13 @@ tailwind.config = {
           badge:   '#11A163', // badge de Messages
           soft:    '#E6F6EF',
         },
+        // Deltas de KPI: la referencia NO usa el verde/rojo saturado de los
+        // botones, sino versiones apagadas. Nucleo de trazo muestreado en
+        // #5A8977 (verde) y #904B50 (rojo).
+        delta: {
+          up:   '#4C9B7C',
+          down: '#C0545A',
+        },
         amber:  { DEFAULT: '#E8A300' }, // hexágono del logotipo
         page:   '#E9E8EE',              // fondo exterior
         panel:  '#EEEDF2',              // panel del área de contenido
