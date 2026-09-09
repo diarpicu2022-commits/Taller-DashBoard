@@ -85,27 +85,27 @@
     <div class="ml-auto flex items-center gap-3 lg:gap-5 shrink-0">
 
       <button type="button" aria-label="Notificaciones, 2 sin leer"
-              class="relative grid place-items-center w-11 h-11 rounded-full bg-panel
+              class="relative grid place-items-center w-11 h-11 rounded-full bg-surface border border-black/[.07]
                      transition-transform duration-200 ease-out hover:scale-105">
-        <span class="ms ms-outline text-[21px]" aria-hidden="true">notifications</span>
+        <span class="ms text-[21px] text-[#3F4254]" aria-hidden="true">notifications</span>
         <span class="absolute top-1 right-1 grid place-items-center min-w-[17px] h-[17px] px-1
                      rounded-full bg-primary text-white text-[10px] font-semibold" aria-hidden="true">2</span>
       </button>
 
       <div class="hidden md:block pl-4 lg:pl-5 border-l border-black/[.07] leading-tight">
         <p class="text-[11px] text-muted whitespace-nowrap">Your Balance</p>
-        <p class="text-[15px] font-semibold">$5.456</p>
+        <p class="text-[15px] font-semibold text-primary">$5.456</p>
       </div>
 
       <div class="flex items-center gap-2.5">
         <span class="grid place-items-center w-11 h-11 rounded-full overflow-hidden shrink-0" aria-hidden="true">
           <svg width="44" height="44" viewBox="0 0 44 44">
-            <circle cx="22" cy="22" r="22" fill="#F3D9B0"/>
-            <circle cx="22" cy="17" r="7" fill="#5A3B22"/>
-            <path d="M8 44c0-8 6.3-13 14-13s14 5 14 13H8Z" fill="#2F2A45"/>
+            <circle cx="22" cy="22" r="22" fill="#F2763A"/>
+            <circle cx="22" cy="17" r="7" fill="#4A2E18"/>
+            <path d="M8 44c0-8 6.3-13 14-13s14 5 14 13H8Z" fill="#E8A34A"/>
           </svg>
         </span>
-        <p class="hidden sm:block text-[15px] whitespace-nowrap">Hi, <span class="font-semibold">Lay</span></p>
+        <p class="hidden sm:block text-[15px] whitespace-nowrap"><span class="text-primary font-medium">Hi,</span> <span class="font-semibold">Lay</span></p>
       </div>
 
     </div>
@@ -134,7 +134,7 @@
         <ul class="space-y-1">
           <li>
             <a href="#" aria-current="page"
-               class="flex items-center gap-4 h-12 px-4 rounded-full bg-primary text-white">
+               class="flex items-center gap-4 h-12 px-4 rounded-full bg-primary text-white shadow-glow-primary">
               <span class="ms text-[22px]" aria-hidden="true">home</span>
               <span class="text-[15px] font-medium">Dashboard</span>
             </a>
@@ -218,7 +218,7 @@
       </nav>
 
       <a href="#" class="mt-auto pt-8 flex items-center gap-4 h-12 px-4 rounded-full hover:bg-panel transition-colors duration-200 ease-out">
-        <span class="ms ms-outline text-[22px]" aria-hidden="true">logout</span>
+        <span class="ms text-[22px]" aria-hidden="true">logout</span>
         <span class="text-[15px]">Logout</span>
       </a>
 
@@ -246,7 +246,7 @@
           </button>
 
           <button type="button"
-                  class="flex items-center gap-2 h-[46px] lg:h-[50px] px-4 lg:px-6 rounded-full bg-success text-white
+                  class="flex items-center gap-2 h-[46px] lg:h-[50px] px-4 lg:px-6 rounded-full bg-success text-white shadow-glow-success
                          transition-transform duration-200 ease-out hover:scale-[1.03]">
             <span class="ms text-[20px]" aria-hidden="true">cloud_download</span>
             <span class="text-body font-medium whitespace-nowrap">Download Report</span>
@@ -426,7 +426,7 @@
 
               <ul class="flex items-center gap-1 sm:gap-3 min-w-0">
                 <li><a href="#" aria-current="page"
-                       class="grid place-items-center w-11 h-11 rounded-full bg-primary text-white text-body font-medium">21</a></li>
+                       class="grid place-items-center w-11 h-11 rounded-full bg-primary text-white text-body font-medium shadow-glow-primary">21</a></li>
                 <li><a href="#" class="grid place-items-center w-11 h-11 rounded-full text-muted text-body hover:bg-panel transition-colors duration-200 ease-out">22</a></li>
                 <li><a href="#" class="grid place-items-center w-11 h-11 rounded-full text-muted text-body hover:bg-panel transition-colors duration-200 ease-out">23</a></li>
                 <li><a href="#" class="grid place-items-center w-11 h-11 rounded-full text-muted text-body hover:bg-panel transition-colors duration-200 ease-out">24</a></li>
@@ -468,7 +468,7 @@
                 <h2 class="text-[clamp(18px,1.6vw,23px)] font-bold text-white leading-tight">Need More Stats?</h2>
                 <p class="text-[clamp(12px,1vw,14px)] text-white/65 mt-1.5">Upgrade to pro for added benefits.</p>
                 <button type="button"
-                        class="mt-4 inline-flex items-center gap-2.5 h-[46px] pl-3.5 pr-6 rounded-full bg-success text-white
+                        class="mt-4 inline-flex items-center gap-2.5 h-[46px] pl-3.5 pr-6 rounded-full bg-success text-white shadow-glow-success
                                transition-transform duration-200 ease-out hover:scale-[1.03]">
                   <span class="ms ms-outline text-[22px]" aria-hidden="true">arrow_circle_up</span>
                   <span class="text-body font-medium whitespace-nowrap">Go Pro Now</span>

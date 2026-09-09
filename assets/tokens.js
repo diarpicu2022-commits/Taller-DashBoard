@@ -55,6 +55,11 @@ tailwind.config = {
       },
       boxShadow: {
         'card': '0 1px 3px rgba(16,16,30,.06)',
+        // Enmienda 2026-09-09: la referencia SI usa sombra de color bajo los
+        // botones solidos (resplandor verde en Download Report, indigo en el
+        // pill activo y en el dia seleccionado). Verificado en recortes 3-4x.
+        'glow-primary': '0 12px 26px -8px rgba(68,62,255,.55)',
+        'glow-success': '0 12px 26px -8px rgba(27,163,100,.50)',
       },
       transitionDuration: {
         DEFAULT: '200ms',
