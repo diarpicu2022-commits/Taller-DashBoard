@@ -7,84 +7,93 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400..700,0..1,0..200&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="assets/tokens.js"></script>
 <style>
   html, body { font-family: 'Poppins', system-ui, sans-serif; }
+
+  /* Iconografia: Material Symbols Rounded en version RELLENA, que es el
+     estilo de la referencia. Reemplaza los SVG dibujados a mano. */
+  .ms {
+    font-family: 'Material Symbols Rounded';
+    font-weight: normal; font-style: normal;
+    line-height: 1; letter-spacing: normal; text-transform: none;
+    display: inline-block; white-space: nowrap; word-wrap: normal;
+    direction: ltr; -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    user-select: none;
+  }
+  .ms-outline { font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24; }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
-  /* Foco visible y consistente en todo lo interactivo (exigencia del contrato) */
   a:focus-visible, button:focus-visible, input:focus-visible {
     outline: 2px solid #443EFF; outline-offset: 2px; border-radius: 9999px;
   }
 </style>
 </head>
 
-<body class="bg-page text-ink min-h-screen p-[18px] flex justify-center">
+<body class="bg-page text-ink min-h-screen p-3 sm:p-4 lg:p-[18px]">
 
 <!-- =====================================================================
-     CONTENEDOR  ·  medido sobre image.png: 1199 x 831, radio 24
+     CONTENEDOR  ·  fluido: ocupa todo el ancho disponible del navegador.
+     La referencia da las proporciones, no un ancho fijo.
      ===================================================================== -->
-<div class="w-full max-w-[1200px] bg-surface rounded-shell flex flex-col">
+<div class="w-full min-h-[calc(100vh-24px)] sm:min-h-[calc(100vh-32px)] lg:min-h-[calc(100vh-36px)]
+            bg-surface rounded-shell flex flex-col">
 
-  <!-- ===================================================================
-       BARRA SUPERIOR  ·  fila de 44 px, 25 px de margen
-       =================================================================== -->
-  <header class="flex items-center px-[25px] pt-[25px] gap-4">
+  <!-- =================================================================
+       BARRA SUPERIOR
+       ================================================================= -->
+  <header class="flex items-center gap-3 lg:gap-4 px-4 sm:px-5 lg:px-[25px] pt-4 lg:pt-[25px]">
 
-    <!-- Columna del logo: mismo ancho que el sidebar menos su padding -->
-    <div class="w-[262px] shrink-0 flex items-center gap-3">
+    <!-- Logo: la columna iguala el ancho del sidebar en pantallas grandes -->
+    <div class="flex items-center gap-3 shrink-0 lg:w-[239px] xl:w-[275px] 2xl:w-[303px]">
       <span class="grid place-items-center w-10 h-[43px] shrink-0" aria-hidden="true">
         <svg width="40" height="43" viewBox="0 0 40 43" fill="none">
           <path d="M20 1.6 36.7 11v20.9L20 41.3 3.3 31.9V11L20 1.6Z" fill="#E8A300"/>
           <path d="M15.6 30V13.4h7.1c3.4 0 5.6 1.9 5.6 5 0 2.2-1.1 3.8-3 4.5l3.5 7.1h-4l-3.1-6.5h-2.4V30h-3.7Zm3.7-9.4h3c1.4 0 2.3-.8 2.3-2.1s-.9-2.1-2.3-2.1h-3v4.2Z" fill="#fff"/>
         </svg>
       </span>
-      <span class="text-[26px] font-bold tracking-tight">flex</span>
+      <span class="text-[22px] sm:text-[26px] font-bold tracking-tight">flex</span>
     </div>
 
-    <!-- Boton de colapsar el sidebar -->
-    <button type="button" aria-label="Colapsar menú lateral"
+    <!-- Abrir/cerrar el menu lateral -->
+    <button type="button" id="menuBtn" aria-expanded="false" aria-controls="sidebar"
+            aria-label="Mostrar u ocultar el menú lateral"
             class="grid place-items-center w-11 h-11 shrink-0 rounded-full border border-black/[.07]
                    text-muted transition-transform duration-200 ease-out hover:scale-105">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M14.5 6 8.5 12l6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <span class="ms ms-outline text-[20px]" aria-hidden="true">chevron_left</span>
     </button>
 
-    <!-- Buscador: 402 x 44 en la referencia -->
-    <form class="flex-1 max-w-[402px]" role="search" onsubmit="return false">
+    <!-- Buscador -->
+    <form class="flex-1 min-w-0 max-w-[402px] hidden sm:block" role="search" onsubmit="return false">
       <label for="q" class="sr-only">Buscar</label>
       <div class="relative">
-        <svg class="absolute left-4 top-1/2 -translate-y-1/2 text-muted-soft" width="18" height="18"
-             viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <circle cx="11" cy="11" r="6.6" stroke="currentColor" stroke-width="2"/>
-          <path d="m16.2 16.2 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+        <span class="ms ms-outline absolute left-4 top-1/2 -translate-y-1/2 text-muted-soft text-[20px]"
+              aria-hidden="true">search</span>
         <input id="q" type="search" placeholder="Search"
-               class="w-full h-11 pl-11 pr-4 rounded-full bg-surface border border-black/[.07]
+               class="w-full h-11 pl-12 pr-4 rounded-full bg-surface border border-black/[.07]
                       text-body placeholder:text-muted-soft focus:outline-none">
       </div>
     </form>
 
-    <!-- Lado derecho: campana, balance, avatar -->
-    <div class="ml-auto flex items-center gap-5 shrink-0">
+    <!-- Campana, balance, avatar -->
+    <div class="ml-auto flex items-center gap-3 lg:gap-5 shrink-0">
 
       <button type="button" aria-label="Notificaciones, 2 sin leer"
               class="relative grid place-items-center w-11 h-11 rounded-full bg-panel
                      transition-transform duration-200 ease-out hover:scale-105">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-ink" aria-hidden="true">
-          <path d="M18 8.6a6 6 0 1 0-12 0c0 5.2-2 6.7-2 6.7h16s-2-1.5-2-6.7Z"
-                stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
-          <path d="M13.7 19a2 2 0 0 1-3.4 0" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
-        </svg>
-        <span class="absolute top-1.5 right-1.5 grid place-items-center min-w-[17px] h-[17px] px-1
+        <span class="ms ms-outline text-[21px]" aria-hidden="true">notifications</span>
+        <span class="absolute top-1 right-1 grid place-items-center min-w-[17px] h-[17px] px-1
                      rounded-full bg-primary text-white text-[10px] font-semibold" aria-hidden="true">2</span>
       </button>
 
-      <div class="pl-5 border-l border-black/[.07] leading-tight">
-        <p class="text-[11px] text-muted">Your Balance</p>
+      <div class="hidden md:block pl-4 lg:pl-5 border-l border-black/[.07] leading-tight">
+        <p class="text-[11px] text-muted whitespace-nowrap">Your Balance</p>
         <p class="text-[15px] font-semibold">$5.456</p>
       </div>
 
@@ -96,19 +105,28 @@
             <path d="M8 44c0-8 6.3-13 14-13s14 5 14 13H8Z" fill="#2F2A45"/>
           </svg>
         </span>
-        <p class="text-[15px] whitespace-nowrap">Hi, <span class="font-semibold">Lay</span></p>
+        <p class="hidden sm:block text-[15px] whitespace-nowrap">Hi, <span class="font-semibold">Lay</span></p>
       </div>
 
     </div>
   </header>
 
-  <!-- =================================================================== -->
-  <div class="flex flex-1 min-h-0">
+  <!-- ================================================================= -->
+  <div class="flex flex-1 min-h-0 relative">
+
+    <!-- Velo para el menu en movil -->
+    <div id="scrim" hidden
+         class="lg:hidden fixed inset-0 bg-ink/40 z-20 transition-opacity duration-200 ease-out"></div>
 
     <!-- =================================================================
-         SIDEBAR  ·  328 px de ancho, items de 48 px, radio completo
+         SIDEBAR  ·  ancho proporcional, no fijo
          ================================================================= -->
-    <aside class="w-[328px] shrink-0 px-[25px] pt-9 pb-[25px] flex flex-col" aria-label="Navegación principal">
+    <aside id="sidebar" aria-label="Navegación principal"
+           class="fixed lg:static inset-y-0 left-0 z-30 w-[280px] lg:w-[264px] xl:w-[300px] 2xl:w-[328px]
+                  shrink-0 bg-surface rounded-shell lg:rounded-none
+                  px-4 lg:px-[25px] pt-6 lg:pt-9 pb-6 lg:pb-[25px]
+                  flex flex-col overflow-y-auto
+                  -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out">
 
       <p class="text-[13px] text-muted-soft mb-3 px-4">Menu</p>
 
@@ -117,68 +135,40 @@
           <li>
             <a href="#" aria-current="page"
                class="flex items-center gap-4 h-12 px-4 rounded-full bg-primary text-white">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M11.3 2.6a1.1 1.1 0 0 1 1.4 0l8 6.6c.25.2.4.5.4.85V20a1.6 1.6 0 0 1-1.6 1.6h-4.3v-6h-4.4v6H6.5A1.6 1.6 0 0 1 4.9 20v-9.95c0-.34.15-.65.4-.85l6-4.95Z"/>
-              </svg>
+              <span class="ms text-[22px]" aria-hidden="true">home</span>
               <span class="text-[15px] font-medium">Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full text-ink hover:bg-panel transition-colors duration-200 ease-out">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M4.6 8.4h14.8l-1 11.1a1.6 1.6 0 0 1-1.6 1.5H7.2a1.6 1.6 0 0 1-1.6-1.5L4.6 8.4Z"/>
-                <path d="M8.7 9.2V6.9a3.3 3.3 0 0 1 6.6 0v2.3" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-                <rect x="9.9" y="11.3" width="4.2" height="5.2" rx="1" fill="#fff"/>
-                <path d="M11 13.1h2M11 14.6h2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
-              </svg>
+            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full hover:bg-panel transition-colors duration-200 ease-out">
+              <span class="ms text-[22px]" aria-hidden="true">shopping_bag</span>
               <span class="text-[15px]">Orders</span>
-              <svg class="ml-auto text-muted-soft" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="m6 9.5 6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <span class="ms ms-outline ml-auto text-muted-soft text-[20px]" aria-hidden="true">expand_more</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full text-ink hover:bg-panel transition-colors duration-200 ease-out">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M10.2 3.4h3.6a1.4 1.4 0 0 1 1.4 1.4v6.2a1.4 1.4 0 0 1-1.4 1.4h-3.6a1.4 1.4 0 0 1-1.4-1.4V4.8a1.4 1.4 0 0 1 1.4-1.4Z"/>
-                <path d="M3.6 15.2c1.7-1.5 3.6-.8 5 .5l1.5 1.3h7.2c1.5 0 2.5.9 2.5.9" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full hover:bg-panel transition-colors duration-200 ease-out">
+              <span class="ms text-[22px]" aria-hidden="true">inventory_2</span>
               <span class="text-[15px]">Products</span>
-              <svg class="ml-auto text-muted-soft" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="m6 9.5 6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <span class="ms ms-outline ml-auto text-muted-soft text-[20px]" aria-hidden="true">expand_more</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full text-ink hover:bg-panel transition-colors duration-200 ease-out">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <rect x="3.6" y="12" width="4" height="8.4" rx="1.4"/>
-                <rect x="10" y="7" width="4" height="13.4" rx="1.4"/>
-                <rect x="16.4" y="3.6" width="4" height="16.8" rx="1.4"/>
-              </svg>
+            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full hover:bg-panel transition-colors duration-200 ease-out">
+              <span class="ms text-[22px]" aria-hidden="true">bar_chart</span>
               <span class="text-[15px]">Analytics</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full text-ink hover:bg-panel transition-colors duration-200 ease-out">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M18.6 4.2v15.6l-8-3.4H6.4A2.2 2.2 0 0 1 4.2 14.2v-4.4a2.2 2.2 0 0 1 2.2-2.2h4.2l8-3.4Z"/>
-                <path d="M7.6 17.4 9 21.4h2.6l-1.2-4" opacity=".55"/>
-              </svg>
+            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full hover:bg-panel transition-colors duration-200 ease-out">
+              <span class="ms text-[22px]" aria-hidden="true">campaign</span>
               <span class="text-[15px]">Marketing</span>
-              <svg class="ml-auto text-muted-soft" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="m6 9.5 6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <span class="ms ms-outline ml-auto text-muted-soft text-[20px]" aria-hidden="true">expand_more</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full text-ink hover:bg-panel transition-colors duration-200 ease-out">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 3.4c-4.9 0-8.8 3.3-8.8 7.4 0 2.3 1.2 4.3 3.2 5.7v4l3.7-2a10.6 10.6 0 0 0 1.9.2c4.9 0 8.8-3.3 8.8-7.9S16.9 3.4 12 3.4Z"/>
-                <circle cx="8.3" cy="10.6" r="1.1" fill="#fff"/>
-                <circle cx="12" cy="10.6" r="1.1" fill="#fff"/>
-                <circle cx="15.7" cy="10.6" r="1.1" fill="#fff"/>
-              </svg>
+            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full hover:bg-panel transition-colors duration-200 ease-out">
+              <span class="ms text-[22px]" aria-hidden="true">chat</span>
               <span class="text-[15px]">Messages</span>
               <span class="ml-auto grid place-items-center min-w-[27px] h-[23px] px-2 rounded-full
                            bg-success-badge text-white text-[12px] font-semibold">25</span>
@@ -187,13 +177,13 @@
         </ul>
       </nav>
 
-      <p class="text-[13px] text-muted-soft mt-9 mb-3 px-4">Integrations</p>
+      <p class="text-[13px] text-muted-soft mt-8 lg:mt-9 mb-3 px-4">Integrations</p>
 
       <nav aria-label="Integraciones">
         <ul class="space-y-1">
           <li>
-            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full text-ink hover:bg-panel transition-colors duration-200 ease-out">
-              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full hover:bg-panel transition-colors duration-200 ease-out">
+              <svg class="w-[22px] h-[22px] shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 2.4 21 11.4 12 20.4 3 11.4 12 2.4Z" fill="#2684FF"/>
                 <path d="M12 8.2 15.2 11.4 12 14.6 8.8 11.4 12 8.2Z" fill="#fff"/>
               </svg>
@@ -201,8 +191,8 @@
             </a>
           </li>
           <li>
-            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full text-ink hover:bg-panel transition-colors duration-200 ease-out">
-              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full hover:bg-panel transition-colors duration-200 ease-out">
+              <svg class="w-[22px] h-[22px] shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="9.4" y="2.6" width="4.2" height="11.4" rx="2.1" fill="#E01E5A"/>
                 <rect x="2.6" y="9.4" width="11.4" height="4.2" rx="2.1" fill="#36C5F0"/>
                 <rect x="10.4" y="10" width="4.2" height="11.4" rx="2.1" fill="#2EB67D"/>
@@ -212,8 +202,8 @@
             </a>
           </li>
           <li>
-            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full text-ink hover:bg-panel transition-colors duration-200 ease-out">
-              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+            <a href="#" class="flex items-center gap-4 h-12 px-4 rounded-full hover:bg-panel transition-colors duration-200 ease-out">
+              <svg class="w-[22px] h-[22px] shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="2.6" y="2.6" width="18.8" height="18.8" rx="4" fill="#1F8DED"/>
                 <rect x="6.4" y="6.6" width="1.9" height="8.4" rx=".95" fill="#fff"/>
                 <rect x="10" y="5.6" width="1.9" height="10.4" rx=".95" fill="#fff"/>
@@ -227,11 +217,8 @@
         </ul>
       </nav>
 
-      <a href="#" class="mt-auto flex items-center gap-4 h-12 px-4 rounded-full text-ink hover:bg-panel transition-colors duration-200 ease-out">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M9.6 21H6.2A2.2 2.2 0 0 1 4 18.8V5.2A2.2 2.2 0 0 1 6.2 3h3.4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
-          <path d="M15.4 16.2 19.6 12l-4.2-4.2M19.6 12H9.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      <a href="#" class="mt-auto pt-8 flex items-center gap-4 h-12 px-4 rounded-full hover:bg-panel transition-colors duration-200 ease-out">
+        <span class="ms ms-outline text-[22px]" aria-hidden="true">logout</span>
         <span class="text-[15px]">Logout</span>
       </a>
 
@@ -240,105 +227,84 @@
     <!-- =================================================================
          AREA DE CONTENIDO
          ================================================================= -->
-    <main class="flex-1 min-w-0 pr-[26px] pb-[25px] flex flex-col">
+    <main class="flex-1 min-w-0 px-4 sm:px-5 lg:pl-0 lg:pr-[26px] pb-4 lg:pb-[25px] flex flex-col">
 
-      <!-- Cabecera de pagina: va sobre blanco, encima del panel gris -->
-      <div class="flex items-center gap-4 py-[18px] flex-wrap">
+      <!-- Cabecera de pagina: sobre blanco, encima del panel gris -->
+      <div class="flex items-center gap-3 lg:gap-4 py-4 lg:py-[18px] flex-wrap">
         <span class="grid place-items-center w-11 h-11 rounded-icon bg-primary text-white shrink-0" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M11.3 2.6a1.1 1.1 0 0 1 1.4 0l8 6.6c.25.2.4.5.4.85V20a1.6 1.6 0 0 1-1.6 1.6h-4.3v-6h-4.4v6H6.5A1.6 1.6 0 0 1 4.9 20v-9.95c0-.34.15-.65.4-.85l6-4.95Z"/>
-          </svg>
+          <span class="ms text-[24px]">home</span>
         </span>
-        <h1 class="text-title">Dashboard</h1>
+        <h1 class="text-[20px] sm:text-title font-semibold">Dashboard</h1>
 
-        <div class="ml-auto flex items-center gap-4">
+        <div class="ml-auto flex items-center gap-3 lg:gap-4">
           <button type="button"
-                  class="flex items-center gap-2.5 h-[50px] px-5 rounded-full bg-surface border border-black/[.07]
-                         transition-transform duration-200 ease-out hover:scale-[1.03]">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-muted" aria-hidden="true">
-              <rect x="3.6" y="5" width="16.8" height="15.4" rx="2.6" stroke="currentColor" stroke-width="1.9"/>
-              <path d="M3.6 9.6h16.8M8.4 3.4v3.2M15.6 3.4v3.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
-            </svg>
-            <span class="text-body">This Month</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-muted-soft" aria-hidden="true">
-              <path d="m6 9.5 6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+                  class="flex items-center gap-2 h-[46px] lg:h-[50px] px-4 lg:px-5 rounded-full bg-surface
+                         border border-black/[.07] transition-transform duration-200 ease-out hover:scale-[1.03]">
+            <span class="ms ms-outline text-muted text-[20px]" aria-hidden="true">calendar_month</span>
+            <span class="text-body whitespace-nowrap">This Month</span>
+            <span class="ms ms-outline text-muted-soft text-[20px]" aria-hidden="true">expand_more</span>
           </button>
 
           <button type="button"
-                  class="flex items-center gap-2.5 h-[50px] px-6 rounded-full bg-success text-white
+                  class="flex items-center gap-2 h-[46px] lg:h-[50px] px-4 lg:px-6 rounded-full bg-success text-white
                          transition-transform duration-200 ease-out hover:scale-[1.03]">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M6.4 16.4a4 4 0 0 1 .5-8 5.4 5.4 0 0 1 10.3 1.2 3.4 3.4 0 0 1-.6 6.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 11v8m0 0-2.6-2.6M12 19l2.6-2.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="text-body font-medium">Download Report</span>
+            <span class="ms text-[20px]" aria-hidden="true">cloud_download</span>
+            <span class="text-body font-medium whitespace-nowrap">Download Report</span>
           </button>
         </div>
       </div>
 
-      <!-- Panel gris: contiene todo el contenido de datos -->
-      <div class="flex-1 bg-panel rounded-card p-[22px]">
+      <!-- Panel gris -->
+      <div class="flex-1 bg-panel rounded-card p-4 lg:p-[22px]">
 
-        <!-- TARJETAS KPI (paso 2) -->
-        <section aria-label="Indicadores principales" class="grid grid-cols-1 md:grid-cols-3 gap-[22px]">
+        <!-- ===== TARJETAS KPI =====
+             Tipografia con clamp(): la cifra y el delta se adaptan al ancho
+             disponible, asi el contenido no puede desbordar la tarjeta. -->
+        <section aria-label="Indicadores principales"
+                 class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-[22px]">
 
-          <article class="bg-surface rounded-card shadow-card px-7 py-6 flex items-center gap-5">
-            <span class="grid place-items-center w-14 h-14 rounded-icon bg-primary-soft shrink-0" aria-hidden="true">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" class="text-primary">
-                <path d="M2.5 3h1.6a1 1 0 0 1 .98.8L5.4 6m0 0 1.5 7.2a1.6 1.6 0 0 0 1.57 1.3h7.9a1.6 1.6 0 0 0 1.56-1.25L19.4 7.3A1 1 0 0 0 18.42 6H5.4Z"
-                      stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="9" cy="19.2" r="1.7" fill="currentColor"/>
-                <circle cx="16.4" cy="19.2" r="1.7" fill="currentColor"/>
-              </svg>
+          <article class="bg-surface rounded-card shadow-card px-5 lg:px-7 py-5 lg:py-6 flex items-center gap-4 lg:gap-5 min-w-0">
+            <span class="grid place-items-center w-12 h-12 lg:w-14 lg:h-14 rounded-icon bg-primary-soft shrink-0" aria-hidden="true">
+              <span class="ms text-primary text-[26px]">shopping_cart</span>
             </span>
             <div class="min-w-0">
-              <p class="text-[15px] leading-5 text-muted">Total Sales</p>
-              <p class="flex items-center gap-3 mt-0.5">
-                <span class="text-kpi tracking-tight">263k</span>
-                <span class="text-[19px] font-medium text-delta-up whitespace-nowrap leading-none">
-                  <span aria-hidden="true" class="inline-block mr-1.5">&uarr;</span>15.6%
+              <p class="text-[14px] lg:text-[15px] leading-5 text-muted truncate">Total Sales</p>
+              <p class="flex items-center gap-2 lg:gap-3 mt-0.5 min-w-0">
+                <span class="text-[clamp(24px,2.1vw,32px)] font-bold leading-[1.25] tracking-tight">263k</span>
+                <span class="text-[clamp(14px,1.25vw,19px)] font-medium text-delta-up whitespace-nowrap leading-none">
+                  <span aria-hidden="true" class="inline-block mr-1">&uarr;</span>15.6%
                   <span class="sr-only">, sube 15,6 por ciento</span>
                 </span>
               </p>
             </div>
           </article>
 
-          <article class="bg-surface rounded-card shadow-card px-7 py-6 flex items-center gap-5">
-            <span class="grid place-items-center w-14 h-14 rounded-icon bg-primary-soft shrink-0" aria-hidden="true">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" class="text-primary">
-                <circle cx="9" cy="8" r="3.1"/>
-                <path d="M3.2 18.4c0-2.9 2.6-4.6 5.8-4.6s5.8 1.7 5.8 4.6a.9.9 0 0 1-.9.9H4.1a.9.9 0 0 1-.9-.9Z"/>
-                <circle cx="17.2" cy="9.2" r="2.4" opacity=".55"/>
-                <path d="M16.4 13.6c2.5.1 4.4 1.6 4.4 3.9a.8.8 0 0 1-.8.8h-3.1c.2-.5.3-1 .3-1.6 0-1.2-.3-2.2-.8-3.1Z" opacity=".55"/>
-              </svg>
+          <article class="bg-surface rounded-card shadow-card px-5 lg:px-7 py-5 lg:py-6 flex items-center gap-4 lg:gap-5 min-w-0">
+            <span class="grid place-items-center w-12 h-12 lg:w-14 lg:h-14 rounded-icon bg-primary-soft shrink-0" aria-hidden="true">
+              <span class="ms text-primary text-[26px]">group</span>
             </span>
             <div class="min-w-0">
-              <p class="text-[15px] leading-5 text-muted">Total Visitors</p>
-              <p class="flex items-center gap-3 mt-0.5">
-                <span class="text-kpi tracking-tight">35k</span>
-                <span class="text-[19px] font-medium text-delta-down whitespace-nowrap leading-none">
-                  <span aria-hidden="true" class="inline-block mr-1.5">&darr;</span>6.2%
+              <p class="text-[14px] lg:text-[15px] leading-5 text-muted truncate">Total Visitors</p>
+              <p class="flex items-center gap-2 lg:gap-3 mt-0.5 min-w-0">
+                <span class="text-[clamp(24px,2.1vw,32px)] font-bold leading-[1.25] tracking-tight">35k</span>
+                <span class="text-[clamp(14px,1.25vw,19px)] font-medium text-delta-down whitespace-nowrap leading-none">
+                  <span aria-hidden="true" class="inline-block mr-1">&darr;</span>6.2%
                   <span class="sr-only">, baja 6,2 por ciento</span>
                 </span>
               </p>
             </div>
           </article>
 
-          <article class="bg-surface rounded-card shadow-card px-7 py-6 flex items-center gap-5">
-            <span class="grid place-items-center w-14 h-14 rounded-icon bg-primary-soft shrink-0" aria-hidden="true">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" class="text-primary">
-                <path d="M4.6 8.4h14.8l-1 11.1a1.6 1.6 0 0 1-1.6 1.5H7.2a1.6 1.6 0 0 1-1.6-1.5L4.6 8.4Z" fill="currentColor"/>
-                <path d="M8.7 9.5V6.9a3.3 3.3 0 0 1 6.6 0v2.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
-                <circle cx="12" cy="14.2" r="1.5" fill="#EAE9FE"/>
-              </svg>
+          <article class="bg-surface rounded-card shadow-card px-5 lg:px-7 py-5 lg:py-6 flex items-center gap-4 lg:gap-5 min-w-0 sm:col-span-2 xl:col-span-1">
+            <span class="grid place-items-center w-12 h-12 lg:w-14 lg:h-14 rounded-icon bg-primary-soft shrink-0" aria-hidden="true">
+              <span class="ms text-primary text-[26px]">shopping_bag</span>
             </span>
             <div class="min-w-0">
-              <p class="text-[15px] leading-5 text-muted">Total Orders</p>
-              <p class="flex items-center gap-3 mt-0.5">
-                <span class="text-kpi tracking-tight">165k</span>
-                <span class="text-[19px] font-medium text-delta-up whitespace-nowrap leading-none">
-                  <span aria-hidden="true" class="inline-block mr-1.5">&uarr;</span>3.5%
+              <p class="text-[14px] lg:text-[15px] leading-5 text-muted truncate">Total Orders</p>
+              <p class="flex items-center gap-2 lg:gap-3 mt-0.5 min-w-0">
+                <span class="text-[clamp(24px,2.1vw,32px)] font-bold leading-[1.25] tracking-tight">165k</span>
+                <span class="text-[clamp(14px,1.25vw,19px)] font-medium text-delta-up whitespace-nowrap leading-none">
+                  <span aria-hidden="true" class="inline-block mr-1">&uarr;</span>3.5%
                   <span class="sr-only">, sube 3,5 por ciento</span>
                 </span>
               </p>
@@ -347,12 +313,12 @@
 
         </section>
 
-        <!-- HUECO DEL PASO 4: sesiones + promo + conversion -->
-        <div class="grid grid-cols-1 lg:grid-cols-[1fr_44%] gap-[22px] mt-[22px]">
+        <!-- HUECO DEL PASO 4 -->
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_minmax(300px,42%)] gap-4 lg:gap-[22px] mt-4 lg:mt-[22px]">
           <div class="bg-surface rounded-card shadow-card min-h-[330px] grid place-items-center">
             <p class="text-label text-muted-soft">Paso 4 · Online Store Sessions</p>
           </div>
-          <div class="flex flex-col gap-[22px]">
+          <div class="flex flex-col gap-4 lg:gap-[22px]">
             <div class="bg-primary rounded-card min-h-[150px] grid place-items-center">
               <p class="text-label text-white/60">Paso 4 · Need More Stats?</p>
             </div>
@@ -367,6 +333,28 @@
     </main>
   </div>
 </div>
+
+<script>
+  // Menu lateral en pantallas pequenas. En lg+ el sidebar es estatico.
+  (function () {
+    var btn = document.getElementById('menuBtn');
+    var side = document.getElementById('sidebar');
+    var scrim = document.getElementById('scrim');
+    var abierto = false;
+
+    function set(v) {
+      abierto = v;
+      side.classList.toggle('-translate-x-full', !v);
+      scrim.hidden = !v;
+      btn.setAttribute('aria-expanded', String(v));
+    }
+    btn.addEventListener('click', function () { set(!abierto); });
+    scrim.addEventListener('click', function () { set(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && abierto) { set(false); btn.focus(); }
+    });
+  })();
+</script>
 
 </body>
 </html>
