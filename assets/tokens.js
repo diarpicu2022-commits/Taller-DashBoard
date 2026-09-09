@@ -33,7 +33,9 @@ tailwind.config = {
         'label': ['12px', { lineHeight: '16px', fontWeight: '500' }],
         'body':  ['14px', { lineHeight: '20px' }],
         'card':  ['16px', { lineHeight: '24px', fontWeight: '600' }],
-        'page':  ['24px', { lineHeight: '32px', fontWeight: '600' }],
+        // 'title', no 'page': el color `page` ya ocupa el nombre y `text-page`
+        // resolveria al color en vez de al tamano.
+        'title': ['24px', { lineHeight: '32px', fontWeight: '600' }],
         'kpi':   ['32px', { lineHeight: '40px', fontWeight: '700' }],
       },
       borderRadius: {
