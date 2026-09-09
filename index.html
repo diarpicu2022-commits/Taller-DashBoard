@@ -313,18 +313,220 @@
 
         </section>
 
-        <!-- HUECO DEL PASO 4 -->
+        <!-- =====================================================================
+             PASO 4 · Sesiones + promocion + conversion
+             ===================================================================== -->
         <div class="grid grid-cols-1 lg:grid-cols-[1fr_minmax(300px,42%)] gap-4 lg:gap-[22px] mt-4 lg:mt-[22px]">
-          <div class="bg-surface rounded-card shadow-card min-h-[330px] grid place-items-center">
-            <p class="text-label text-muted-soft">Paso 4 · Online Store Sessions</p>
+
+          <!-- ============ ONLINE STORE SESSIONS ============ -->
+          <section class="bg-surface rounded-card shadow-card p-5 lg:p-6 flex flex-col min-w-0">
+
+            <div class="flex items-center gap-3 flex-wrap">
+              <h2 class="text-card">Online Store Sessions</h2>
+              <button type="button"
+                      class="ml-auto h-10 px-5 rounded-full border border-black/[.09] text-muted text-body
+                             transition-transform duration-200 ease-out hover:scale-[1.03]">
+                View Report
+              </button>
+            </div>
+
+            <!-- Visitantes -->
+            <div class="flex items-center gap-4 lg:gap-5 mt-5 min-w-0">
+              <span class="grid place-items-center w-12 h-12 lg:w-14 lg:h-14 rounded-icon bg-primary-soft shrink-0" aria-hidden="true">
+                <span class="ms text-primary text-[26px]">group</span>
+              </span>
+              <div class="min-w-0">
+                <p class="text-[14px] lg:text-[15px] text-muted leading-5">Visitors</p>
+                <p class="text-[clamp(24px,2.1vw,32px)] font-bold leading-[1.25] tracking-tight">68</p>
+              </div>
+              <div class="ml-auto text-right shrink-0">
+                <p class="text-[clamp(13px,1.1vw,16px)] font-medium text-delta-up leading-none">
+                  <span aria-hidden="true" class="inline-block mr-1">&uarr;</span>15.6%
+                  <span class="sr-only">, sube 15,6 por ciento</span>
+                </p>
+                <p class="flex items-center justify-end gap-5 mt-3">
+                  <span class="text-[clamp(13px,1.1vw,16px)] font-semibold text-primary">26</span>
+                  <span class="text-[clamp(13px,1.1vw,16px)] font-medium text-delta-down leading-none">
+                    <span aria-hidden="true" class="inline-block mr-1">&darr;</span>1.6%
+                    <span class="sr-only">, baja 1,6 por ciento</span>
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <hr class="border-0 border-t border-black/[.07] my-5">
+
+            <!-- Grafico -->
+            <div class="flex items-center gap-3 flex-wrap">
+              <h3 class="text-card">Sessions Over Time</h3>
+              <button type="button"
+                      class="ml-auto flex items-center gap-2 h-10 px-4 rounded-full border border-black/[.09]
+                             transition-transform duration-200 ease-out hover:scale-[1.03]">
+                <span class="ms ms-outline text-muted-soft text-[19px]" aria-hidden="true">calendar_month</span>
+                <span class="text-body text-muted">February</span>
+                <span class="ms ms-outline text-muted-soft text-[19px]" aria-hidden="true">expand_more</span>
+              </button>
+            </div>
+
+            <figure class="mt-4 flex-1 min-h-[210px]">
+              <figcaption class="sr-only">
+                Sesiones por día del 21 al 25 de febrero. La tendencia sube de 0 a 15 sesiones,
+                con dos picos intermedios de 6 y 7,6 y un ascenso pronunciado al final.
+              </figcaption>
+              <svg viewBox="0 0 700 260" class="w-full h-full" role="img"
+                   aria-label="Gráfico de líneas de sesiones a lo largo del tiempo" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="lineaSesiones" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0"   stop-color="#443EFF" stop-opacity=".18"/>
+                    <stop offset=".35" stop-color="#443EFF" stop-opacity=".55"/>
+                    <stop offset=".75" stop-color="#443EFF" stop-opacity=".95"/>
+                    <stop offset="1"   stop-color="#443EFF" stop-opacity="1"/>
+                  </linearGradient>
+                </defs>
+
+                <!-- Rejilla: 0, 5, 10, 15 -->
+                <g stroke="#E4E3EC" stroke-width="1.4">
+                  <line x1="46" y1="230" x2="695" y2="230"/>
+                  <line x1="46" y1="160" x2="695" y2="160"/>
+                  <line x1="46" y1="90"  x2="695" y2="90"/>
+                  <line x1="46" y1="20"  x2="695" y2="20"/>
+                </g>
+                <g fill="#B7B7C2" font-size="19" font-family="Poppins, sans-serif" text-anchor="end">
+                  <text x="34" y="236">0</text>
+                  <text x="34" y="166">5</text>
+                  <text x="34" y="96">10</text>
+                  <text x="34" y="26">15</text>
+                </g>
+
+                <!-- Curva -->
+                <path fill="none" stroke="url(#lineaSesiones)" stroke-width="6"
+                      stroke-linecap="round" stroke-linejoin="round"
+                      d="M 48 230
+                         C 74 230, 88 224, 102 206
+                         C 119 183, 126 143, 146 143
+                         C 169 143, 182 178, 206 192
+                         C 229 205, 241 209, 259 206
+                         C 291 200, 306 190, 326 172
+                         C 351 149, 366 124, 391 124
+                         C 416 124, 429 149, 451 166
+                         C 471 182, 486 197, 506 195
+                         C 529 192, 546 183, 563 173
+                         C 591 156, 601 111, 626 83
+                         C 651 56, 669 31, 692 21"/>
+              </svg>
+            </figure>
+
+            <!-- Paginacion por dia -->
+            <nav class="flex items-center justify-between gap-2 mt-5" aria-label="Días del periodo">
+              <button type="button" aria-label="Días anteriores"
+                      class="grid place-items-center w-10 h-10 shrink-0 rounded-full border border-black/[.09]
+                             text-muted-soft transition-transform duration-200 ease-out hover:scale-105">
+                <span class="ms ms-outline text-[19px]" aria-hidden="true">chevron_left</span>
+              </button>
+
+              <ul class="flex items-center gap-1 sm:gap-3 min-w-0">
+                <li><a href="#" aria-current="page"
+                       class="grid place-items-center w-11 h-11 rounded-full bg-primary text-white text-body font-medium">21</a></li>
+                <li><a href="#" class="grid place-items-center w-11 h-11 rounded-full text-muted text-body hover:bg-panel transition-colors duration-200 ease-out">22</a></li>
+                <li><a href="#" class="grid place-items-center w-11 h-11 rounded-full text-muted text-body hover:bg-panel transition-colors duration-200 ease-out">23</a></li>
+                <li><a href="#" class="grid place-items-center w-11 h-11 rounded-full text-muted text-body hover:bg-panel transition-colors duration-200 ease-out">24</a></li>
+                <li><a href="#" class="grid place-items-center w-11 h-11 rounded-full text-muted text-body hover:bg-panel transition-colors duration-200 ease-out">25</a></li>
+              </ul>
+
+              <button type="button" aria-label="Días siguientes"
+                      class="grid place-items-center w-10 h-10 shrink-0 rounded-full border border-black/[.09]
+                             text-muted-soft transition-transform duration-200 ease-out hover:scale-105">
+                <span class="ms ms-outline text-[19px]" aria-hidden="true">chevron_right</span>
+              </button>
+            </nav>
+
+          </section>
+
+          <!-- ============ COLUMNA DERECHA ============ -->
+          <div class="flex flex-col gap-4 lg:gap-[22px] min-w-0">
+
+            <!-- ---- Need More Stats? ---- -->
+            <section class="relative bg-primary rounded-card overflow-hidden p-5 lg:p-6 min-h-[170px]">
+
+              <!-- Ilustracion decorativa -->
+              <svg class="absolute right-0 top-0 h-full w-[52%] pointer-events-none"
+                   viewBox="0 0 220 190" fill="none" aria-hidden="true" preserveAspectRatio="xMaxYMid slice">
+                <circle cx="52" cy="34" r="26" fill="#fff" opacity=".07"/>
+                <circle cx="118" cy="20" r="34" fill="#fff" opacity=".05"/>
+                <ellipse cx="30" cy="150" rx="22" ry="9" fill="#fff" opacity=".10"/>
+                <path d="M96 190c0-30 16-40 16-64s-14-30-14-52" stroke="#241F52" stroke-width="11" stroke-linecap="round"/>
+                <path d="M170 190c0-26 12-36 12-58" stroke="#241F52" stroke-width="11" stroke-linecap="round"/>
+                <path d="M98 60 78 88h13v34h18V88h13L98 60Z" fill="#fff"/>
+                <path d="M182 34l-22 30h14v30h16V64h14l-22-30Z" fill="#fff"/>
+                <circle cx="112" cy="122" r="5" fill="#fff" opacity=".85"/>
+                <path d="M140 44l10-16 8 6-10 16z" fill="#F04438"/>
+                <circle cx="150" cy="24" r="7" fill="#2F2A45"/>
+                <path d="M143 32h14l4 18h-22z" fill="#fff"/>
+              </svg>
+
+              <div class="relative max-w-[62%] lg:max-w-[60%]">
+                <h2 class="text-[clamp(18px,1.6vw,23px)] font-bold text-white leading-tight">Need More Stats?</h2>
+                <p class="text-[clamp(12px,1vw,14px)] text-white/65 mt-1.5">Upgrade to pro for added benefits.</p>
+                <button type="button"
+                        class="mt-4 inline-flex items-center gap-2.5 h-[46px] pl-3.5 pr-6 rounded-full bg-success text-white
+                               transition-transform duration-200 ease-out hover:scale-[1.03]">
+                  <span class="ms ms-outline text-[22px]" aria-hidden="true">arrow_circle_up</span>
+                  <span class="text-body font-medium whitespace-nowrap">Go Pro Now</span>
+                </button>
+              </div>
+            </section>
+
+            <!-- ---- Conversion ---- -->
+            <section class="bg-surface rounded-card shadow-card p-5 lg:p-6 flex-1 flex flex-col min-w-0">
+              <h2 class="text-card">Conversion</h2>
+
+              <!-- Gauge semicircular -->
+              <div class="relative flex-1 grid place-items-center mt-2 min-h-[150px]">
+                <svg viewBox="0 0 320 176" class="w-full max-w-[300px]" role="img"
+                     aria-label="Tasa de conversión del 58,19 por ciento, sube 3,5 por ciento">
+                  <defs>
+                    <linearGradient id="gradGauge" x1="0" y1="1" x2="1" y2="0">
+                      <stop offset="0"   stop-color="#9A95FF"/>
+                      <stop offset=".55" stop-color="#5B52FF"/>
+                      <stop offset="1"   stop-color="#3B33F0"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Pista -->
+                  <path d="M 42 160 A 118 118 0 0 1 278 160" fill="none" stroke="#EAE9FE" stroke-width="44"/>
+                  <!-- Valor: 58,19% de la semicircunferencia (pi x 118 = 370,7) -->
+                  <path d="M 42 160 A 118 118 0 0 1 278 160" fill="none"
+                        stroke="url(#gradGauge)" stroke-width="44"
+                        stroke-dasharray="215.8 370.7"/>
+                </svg>
+                <div class="absolute inset-x-0 bottom-0 text-center pb-1">
+                  <p class="text-[clamp(24px,2.2vw,33px)] font-bold tracking-tight leading-none">58,19%</p>
+                  <p class="text-[clamp(13px,1.1vw,16px)] font-medium text-delta-up mt-1.5 leading-none">
+                    <span aria-hidden="true" class="inline-block mr-1">&uarr;</span>3.5%
+                    <span class="sr-only">, sube 3,5 por ciento</span>
+                  </p>
+                </div>
+              </div>
+
+              <hr class="border-0 border-t border-black/[.07] mt-4 mb-4">
+
+              <dl class="flex items-center justify-between gap-4 flex-wrap">
+                <div class="flex items-center gap-2 min-w-0">
+                  <span class="ms ms-outline text-delta-up text-[19px] shrink-0" aria-hidden="true">south_west</span>
+                  <dt class="text-[clamp(12px,1vw,15px)] text-muted">Income</dt>
+                  <dd class="text-[clamp(12px,1vw,15px)] font-semibold">$542,317</dd>
+                </div>
+                <div class="flex items-center gap-2 min-w-0">
+                  <span class="ms ms-outline text-ink text-[19px] shrink-0" aria-hidden="true">north_east</span>
+                  <dt class="text-[clamp(12px,1vw,15px)] text-muted">Expences</dt>
+                  <dd class="text-[clamp(12px,1vw,15px)] font-semibold">$497,456</dd>
+                </div>
+              </dl>
+            </section>
+
           </div>
-          <div class="flex flex-col gap-4 lg:gap-[22px]">
-            <div class="bg-primary rounded-card min-h-[150px] grid place-items-center">
-              <p class="text-label text-white/60">Paso 4 · Need More Stats?</p>
-            </div>
-            <div class="bg-surface rounded-card shadow-card flex-1 min-h-[160px] grid place-items-center">
-              <p class="text-label text-muted-soft">Paso 4 · Conversion</p>
-            </div>
+        </div>
+
+      </div>
           </div>
         </div>
 
