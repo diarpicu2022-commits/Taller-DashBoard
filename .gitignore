@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.vscode/
+
+# Material del curso y documentacion de proceso: SOLO LOCAL, nunca al repo
+Proceso_de_diseño.md
+Proceso_de_dise*.md
+docs/
